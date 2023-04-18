@@ -20,14 +20,18 @@ def children_index(request):
 
 @login_required
 def children_detail(request, child_id):
-  child = Child.objects.filter(user=request.user)
+  child = Child.objects.get(id=child_id)
   return render(request, 'children/detail.html', {'child': child,})
 
 class ChildCreate(LoginRequiredMixin, CreateView):
   model = Child
   fields = '__all__'
 
-class ChildUpdate(UpdateView):
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+class ChildUpdate(LoginRequiredMixin,UpdateView):
   model = Child
   # Let's disallow the renaming of a cat by excluding the name field!
   fields = ['age', 'note']

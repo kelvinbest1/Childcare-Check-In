@@ -18,10 +18,10 @@
         <div class="nav-wrapper">
           <a href="#" class="brand-logo right">Kelvin Daycare</a>
           <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="{% url 'about' %}"About Us</a></li>
+            <li><a href="{% url 'about' %}"></a>About Us</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'children_create' %}">Add Child</a></li>
-            <li><a href="{% url 'index'%}"View All Children</a></li>
+            <li><a href="{% url 'index' %}"></a>View All Children</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
