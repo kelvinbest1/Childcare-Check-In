@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Child
 
 # Create your views here.
 def home(request):
@@ -8,9 +9,7 @@ def about(request):
   return render(request, 'about.html')
 
 def children_index(request):
-  return render(request, 'children/index.html', {
-    'children': children
-  })
-  
+  children = Child.objects.all()
+  return render(request, 'children/index.html', { 'children': children })
 
   
