@@ -26,6 +26,16 @@ def children_detail(request, child_id):
 class ChildCreate(LoginRequiredMixin, CreateView):
   model = Child
   fields = '__all__'
+
+class ChildUpdate(UpdateView):
+  model = Child
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = ['age', 'note']
+
+class ChildDelete(DeleteView):
+  model = Child
+  success_url = '/children'
+
   
 
 class RosterCreate(LoginRequiredMixin, CreateView):
