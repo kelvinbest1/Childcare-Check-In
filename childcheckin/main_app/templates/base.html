@@ -19,9 +19,13 @@
           <a href="#" class="brand-logo right">Kelvin Daycare</a>
           <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="/about">About Us</a></li>
+            {% if user.is_authenticated %}
             <li><a href="/children">View All Children</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
-          </ul>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            {% endif %}
+         </ul>
         </div>
       </nav>
             
@@ -33,4 +37,5 @@
   <footer class="page-footer">
     <div class="right">All Rights Reserved, &copy; 2023 Kelvin DayCare &nbsp;</div>
   </footer>
+            
 
