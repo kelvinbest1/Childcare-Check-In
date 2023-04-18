@@ -6,4 +6,11 @@ def home(request):
 
 def about(request):
   return render(request, 'about.html')
+
+def children_index(request):
+  return render(request, 'children/index.html', {
+    'children': children
+  })
+  
+
   
