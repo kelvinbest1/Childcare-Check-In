@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Child(models.Model):
@@ -8,3 +9,17 @@ class Child(models.Model):
 
 def __str__(self):
     return self.name
+
+
+class Roster(models.Model):
+    date = models.DateField('Date Added')
+    age_group = models.CharField(max_length=100)
+    checkin_status = models.BooleanField(default=False)
+    caregiver = models.CharField(max_length=100)
+    dropped_off_by = models.CharField(max_length=100)
+    enrolled_status = models.BooleanField(default=True)
+    child = models.ForeignKey(Child,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+                              
+                              
