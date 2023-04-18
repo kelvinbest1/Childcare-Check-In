@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Child, Roster
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -12,13 +13,20 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def children_index(request):
   children = Child.objects.all()
   return render(request, 'children/index.html', { 'children': children })
 
+@login_required
 def children_detail(request, child_id):
-  child = Child.objects.get(id=child_id)
+  child = Child.objects.filter(user=request.user)
   return render(request, 'children/detail.html', {'child': child,})
+
+class ChildCreate(LoginRequiredMixin, CreateView):
+  model = Child
+  fields = '__all__'
+  
 
 class RosterCreate(LoginRequiredMixin, CreateView):
   model = Roster
@@ -28,19 +36,19 @@ class RosterCreate(LoginRequiredMixin, CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
   
-  def signup(request):
-   error_message = ''
-   if request.method == 'POST':
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
     # This is how to create a 'user' form object
     # that includes the data from the browser
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
+     form = UserCreationForm(request.POST)
+     if form.is_valid():
       # This will add the user to the database
       user = form.save()
       # This is how we log a user in via code
       login(request, user)
       return redirect('index')
-    else:
+  else:
       error_message = 'Invalid sign up - try again'
   # A bad POST or a GET request, so render signup.html with an empty form
   form = UserCreationForm()
