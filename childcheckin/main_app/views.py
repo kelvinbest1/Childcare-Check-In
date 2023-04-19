@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Child, Roster
+from .models import Child, Roster, Activity
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -23,7 +23,9 @@ def children_index(request):
 def children_detail(request, child_id):
   child = Child.objects.get(id=child_id)
   roster_form = RosterForm()
-  return render(request, 'children/detail.html', {'child': child,'roster_form':roster_form})
+  id_list = child.activities.all().values_list('id')
+  activities_child_doesnt_have = Activity.objects.exclude(id__in=id_list)
+  return render(request, 'children/detail.html', {'child': child,'roster_form':roster_form,'activities': activities_child_doesnt_have})
 
 class ChildCreate(LoginRequiredMixin, CreateView):
   model = Child
@@ -62,6 +64,11 @@ class RosterCreate(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
+  
+@login_required
+def assoc_activity(request, child_id, activity_id):
+  Child.objects.get(id=child_id).activities.add(activity_id)
+  return redirect('detail', child_id=child_id)
   
 def signup(request):
   error_message = ''
