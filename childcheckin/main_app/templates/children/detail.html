@@ -7,10 +7,14 @@
       <p>Age: {{ child.age }}</p>
       <p>Note: {{ child.note }}</p>
     </div>
+    <div class="card-action">
     <a href="{% url 'children_update' child.id %}">Edit</a>
     <a href="{% url 'children_delete' child.id %}">Delete</a>
 </div>
+</div>
 {% endblock %}
+
+
   
   
   

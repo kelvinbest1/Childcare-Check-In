@@ -5,6 +5,7 @@ from .models import Child, Roster
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from .forms import RosterForm
 
 # Create your views here.
 def home(request):
@@ -21,6 +22,7 @@ def children_index(request):
 @login_required
 def children_detail(request, child_id):
   child = Child.objects.get(id=child_id)
+  roster_form = RosterForm()
   return render(request, 'children/detail.html', {'child': child,})
 
 class ChildCreate(LoginRequiredMixin, CreateView):
