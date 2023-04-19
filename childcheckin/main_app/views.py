@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Child, Roster, Activity
 from django.contrib.auth import login
@@ -65,10 +65,35 @@ class RosterCreate(LoginRequiredMixin, CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
   
+class ActivityList(LoginRequiredMixin, ListView):
+  model = Activity
+
+class ActivityDetail(LoginRequiredMixin, DetailView):
+  model = Activity
+
+class ActivityCreate(LoginRequiredMixin, CreateView):
+  model = Activity
+  fields = '__all__'
+
+class ActivityUpdate(LoginRequiredMixin, UpdateView):
+  model = Activity
+  fields = ['name', 'description', 'duration']
+
+class ActivityDelete(LoginRequiredMixin, DeleteView):
+  model = Activity
+  success_url = '/activities'
+
+  
 @login_required
 def assoc_activity(request, child_id, activity_id):
   Child.objects.get(id=child_id).activities.add(activity_id)
   return redirect('detail', child_id=child_id)
+
+@login_required
+def unassoc_Activity(request, child_id, activity_id):
+  Child.objects.get(id=child_id).activities.remove(activity_id)
+  return redirect('detail', child_id=child_id)
+
   
 def signup(request):
   error_message = ''
