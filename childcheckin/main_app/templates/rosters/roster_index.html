@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Roster</h1>
+
+{% for r in roster %}
+  <div class="card">
+    <a href="{% url 'detail' child.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ roster.child_id }}</span>
+      <p>Age Gruup: {{ roster.age_group }}</p>
+      <p>Checkin: {{ roster.checkin_status }}</p>
+      <p>Date Added: {{ roster.date }}</p>
+      <p>CareGiver: {{ roster.caregiver }}</p>
+      <p>Dropped off by: {{ roster.dropped_off_by }}</p>
+      <p>Enrolled Status: {{ roster.enrolled_status }}</p>
+    </div>
+</a>
+  </div>
+{% endfor %}
+
+{% endblock %}
+     

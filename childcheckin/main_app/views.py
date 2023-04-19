@@ -23,7 +23,7 @@ def children_index(request):
 def children_detail(request, child_id):
   child = Child.objects.get(id=child_id)
   roster_form = RosterForm()
-  return render(request, 'children/detail.html', {'child': child,})
+  return render(request, 'children/detail.html', {'child': child,'roster_form':roster_form})
 
 class ChildCreate(LoginRequiredMixin, CreateView):
   model = Child
@@ -42,7 +42,24 @@ class ChildDelete(DeleteView):
   model = Child
   success_url = '/children'
 
-  
+def add_roster(request, child_id):
+  # create a ModelForm instance using the data in request.POST
+   form = RosterForm(request.POST)
+  # validate the form
+   if form.is_valid():
+    # don't save the form to the db until it
+    # has the child_id assigned
+    new_feeding = form.save(commit=False)
+    new_feeding.user = request.user
+    new_feeding.child_id = child_id
+    new_feeding.save()
+   return redirect('detail', child_id=child_id)
+
+
+@login_required
+def roster_index(request):
+  roster = Roster.objects.all()
+  return render(request, 'roster/index.html', { 'roster': roster })  
 
 class RosterCreate(LoginRequiredMixin, CreateView):
   model = Roster

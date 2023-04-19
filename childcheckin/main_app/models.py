@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Child(models.Model):
     name = models.CharField(max_length=100)
-    age = models.IntegerField()
+    age = models.CharField(max_length=50)
     note = models.TextField(blank=True, max_length=275)
 
     def __str__(self):
