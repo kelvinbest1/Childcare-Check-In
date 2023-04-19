@@ -36,27 +36,27 @@
             <td>{{roster.age_group}}</td>
             <td>{{roster.caregiver}}</td> 
             <td>{{roster.dropped_off_by}}</td>
-            <td>{{roster.enrolled_status}}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-    
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  
 
-    <script>
-        const dateEl = document.getElementById('id_date');
-        M.Datepicker.init(dateEl, {
-          format: 'yyyy-mm-dd',
-          defaultDate: new Date(),
-          setDefaultDate: true,
-          autoClose: true
-        });
-      </script>
+  <script>
+      const dateEl = document.getElementById('id_date');
+      M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+      });
+    </script>
 {% endblock %}
-    
-    
-     
+  
+  
+   
+            
    
       
     
