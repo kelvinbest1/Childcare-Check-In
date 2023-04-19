@@ -22,38 +22,39 @@
       <input type="submit" class="btn" value="Add Child to Roster">
     </form>
     <br>
+    <div class="card-panel teal-text center-align">{{child.name}} Daily Info.</div>
     
-      <div class="card-panel teal-text center-align">{{child.name}} has been added to the roster.</div>
-      <table class="striped">
-        <thead>
-          <tr><th>Roster Data</th></tr>
-        </thead>
-        <tbody>
-          {% for roster in child.roster_set.all %}
-            <tr>
-              <td>{{roster.date}}</td>
-              <td>{{roster.age_group}}</td>
-              <td>{{roster.checkin_status}}</td>
-              <td>{{roster.caregiver}}</td> 
-              <td>{{roster.dropped_off_by}}</td>
-              <td>{{roster.enrolled_status}}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-      
-  
-      <script>
-          const dateEl = document.getElementById('id_date');
-          M.Datepicker.init(dateEl, {
-            format: 'yyyy-mm-dd',
-            defaultDate: new Date(),
-            setDefaultDate: true,
-            autoClose: true
-          });
-        </script>
-  {% endblock %}
+    <table class="striped">
+      <thead>
+        <tr><th>Checkin Data</th></tr>
+      </thead>
+      <tbody>
+        {% for roster in child.roster_set.all %}
+          <tr>
+            <td>{{roster.date}}</td>
+            <td>{{roster.time_entered}}</td>
+            <td>{{roster.age_group}}</td>
+            <td>{{roster.caregiver}}</td> 
+            <td>{{roster.dropped_off_by}}</td>
+            <td>{{roster.enrolled_status}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+    
+
+    <script>
+        const dateEl = document.getElementById('id_date');
+        M.Datepicker.init(dateEl, {
+          format: 'yyyy-mm-dd',
+          defaultDate: new Date(),
+          setDefaultDate: true,
+          autoClose: true
+        });
+      </script>
+{% endblock %}
+    
     
      
    

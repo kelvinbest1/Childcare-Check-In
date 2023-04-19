@@ -49,21 +49,15 @@ def add_roster(request, child_id):
    if form.is_valid():
     # don't save the form to the db until it
     # has the child_id assigned
-    new_feeding = form.save(commit=False)
-    new_feeding.user = request.user
-    new_feeding.child_id = child_id
-    new_feeding.save()
+    new_roster = form.save(commit=False)
+    new_roster.user = request.user
+    new_roster.child_id = child_id
+    new_roster.save()
    return redirect('detail', child_id=child_id)
-
-
-@login_required
-def roster_index(request):
-  roster = Roster.objects.all()
-  return render(request, 'roster/index.html', { 'roster': roster })  
 
 class RosterCreate(LoginRequiredMixin, CreateView):
   model = Roster
-  fields = ['date', 'age_group', 'checkin_status', 'caregiver', 'dropped_off_by', 'enrolled_status']
+  fields = ['date', 'age_group', 'time_entered', 'caregiver', 'dropped_off_by', 'enrolled_status']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -87,6 +81,9 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+  
+
 
    
    

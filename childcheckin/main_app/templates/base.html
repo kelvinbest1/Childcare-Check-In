@@ -23,7 +23,6 @@
             {% if user.is_authenticated %}
             <li><a href="{% url 'children_create' %}">Add Child</a></li>
             <li><a href="{% url 'index' %}"></a>View Children</a></li>
-            <li><a href="{% url 'roster_index' %}"></a>Roster</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -41,5 +40,6 @@
   <footer class="page-footer">
     <div class="right">All Rights Reserved, &copy; 2023 Kelvin DayCare &nbsp;</div>
   </footer>
+           
             
 

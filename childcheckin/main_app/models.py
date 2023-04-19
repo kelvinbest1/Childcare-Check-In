@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -21,7 +22,7 @@ class Child(models.Model):
 class Roster(models.Model):
     date = models.DateField("Date Added")
     age_group = models.CharField(max_length=100)
-    checkin_status = models.BooleanField(default=False)
+    time_entered = models.TimeField(default='') 
     caregiver = models.CharField(max_length=100)
     dropped_off_by = models.CharField(max_length=100)
     enrolled_status = models.BooleanField(default=True)
