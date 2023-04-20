@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Child, Roster, Activity
 from django.contrib.auth import login
@@ -90,7 +91,7 @@ def assoc_activity(request, child_id, activity_id):
   return redirect('detail', child_id=child_id)
 
 @login_required
-def unassoc_Activity(request, child_id, activity_id):
+def unassoc_activity(request, child_id, activity_id):
   Child.objects.get(id=child_id).activities.remove(activity_id)
   return redirect('detail', child_id=child_id)
 

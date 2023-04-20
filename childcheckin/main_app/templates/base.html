@@ -21,6 +21,8 @@
           <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="{% url 'about' %}"></a>About Us</a></li>
             {% if user.is_authenticated %}
+            <li><a href="{% url 'activities_create' %}">Add Activity</a></li>
+            <li><a href="{% url 'activites_index' %}">Activities</a></li>
             <li><a href="{% url 'children_create' %}">Add Child</a></li>
             <li><a href="{% url 'index' %}"></a>View Children</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
