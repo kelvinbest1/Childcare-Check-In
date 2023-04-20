@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Children</h1>
+<h1>Child</h1>
 <div class="card">
     <div class="card-content">
       <span class="card-title">{{ child.name }}</span>
@@ -46,16 +46,16 @@
 <div class="row">
   <div class="col s6">
     <h3>{{ child.name }}'s Activites</h3>
-    {% if child.activities.count %}
-      {% for activity in child.activites.all %}
+    {% if child.activitys.count %}
+      {% for activity in child.activitys.all %}
         <div class="card">
           <div class="card-content">
             <span class="card-title">
-              A <span class=activities: {{ activity.color }}>{{ activity.duration }}</span> {{ activity.name }}
+                A <span style="color: {{ activity.name }}">{{ activity.name }}</span> {{ activity.duration }}
             </span>
           </div>
           <div class="card-action">
-            <form action="{% url 'unassoc_toy' child.id activity.id %}" method="POST">
+            <form action="{% url 'unassoc_activity' child.id activity.id %}" method="POST">
               {% csrf_token %}
               <button type="submit" class="btn">Remove</button>
             </form>
@@ -69,12 +69,12 @@
 
   <div class="col s6">
     <h3>Activities</h3>
-    {% if actvities.count %}
+    {% if activities.count %}
       {% for activity in activities.all %}
         <div class="card">
           <div class="card-content">
             <span class="card-title">
-              A <span {{ activity.duration }}>{{ activity.descrption }}</span> {{ activity.name }}
+                <span>{{ activity.name }}</span> <br>{{ activity.duration }} <br>{{activity.description}}
             </span>
           </div>
           <div class="card-action">
@@ -86,7 +86,7 @@
         </div>
       {% endfor %}
     {% else %}
-      <h5>{{child.name}} has done all activities</h5>
+      <h5>No Available Activities</h5>
     {% endif %}
   </div>
 </div>
