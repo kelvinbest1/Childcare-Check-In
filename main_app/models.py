@@ -22,7 +22,7 @@ class Child(models.Model):
     age = models.CharField(max_length=50)
     note = models.TextField(blank=True, max_length=275)
     activities = models.ManyToManyField(Activity,blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE,default=True)
+   
 
     def __str__(self):
      return self.name
@@ -41,6 +41,7 @@ class Roster(models.Model):
     dropped_off_by = models.CharField(max_length=100)
     enrolled_status = models.BooleanField(default=True)
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,default=True)
    
 
     def __str__(self):
