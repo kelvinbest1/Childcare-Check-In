@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 class Activity(models.Model):
   name = models.CharField(max_length=50)
-  description = models.CharField(max_length=250)
+  description = models.CharField(max_length=250,blank=True)
   duration = models.CharField(max_length=35)
 
   def __str__(self):
