@@ -1,1 +1,1 @@
-web: gunicorn childcheckin.wsgi
+web: gunicorn CHILDCARE-CHECK-IN.wsgi
