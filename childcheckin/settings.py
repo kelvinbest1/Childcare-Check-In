@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'childcheckin.wsgi.application'
+WSGI_APPLICATION = 'CHILDCARE-CHECK-IN.wsgi.application'
 
 
 # Database
