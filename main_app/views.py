@@ -30,7 +30,7 @@ def children_detail(request, child_id):
 
 class ChildCreate(LoginRequiredMixin, CreateView):
   model = Child
-  fields = '__all__'
+  fields = ['name','age','note']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
