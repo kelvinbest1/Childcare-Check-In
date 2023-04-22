@@ -23,9 +23,9 @@ def children_index(request):
 @login_required
 def children_detail(request, child_id):
   child = Child.objects.get(id=child_id)
-  roster_form = RosterForm()
   id_list = child.activities.all().values_list('id')
   activities_child_doesnt_have = Activity.objects.exclude(id__in=id_list)
+  roster_form = RosterForm()
   return render(request, 'children/detail.html', {'child': child,'roster_form':roster_form,'activities': activities_child_doesnt_have})
 
 class ChildCreate(LoginRequiredMixin, CreateView):
@@ -38,33 +38,28 @@ class ChildCreate(LoginRequiredMixin, CreateView):
 
 class ChildUpdate(LoginRequiredMixin,UpdateView):
   model = Child
-  # Let's disallow the renaming of a cat by excluding the name field!
+
   fields = ['age', 'note']
 
 class ChildDelete(DeleteView):
   model = Child
   success_url = '/children'
 
+@login_required
 def add_roster(request, child_id):
   # create a ModelForm instance using the data in request.POST
-   form = RosterForm(request.POST)
+  form = RosterForm(request.POST)
   # validate the form
-   if form.is_valid():
+  if form.is_valid(): 
     # don't save the form to the db until it
     # has the child_id assigned
     new_roster = form.save(commit=False)
-    new_roster.user = request.user
     new_roster.child_id = child_id
     new_roster.save()
-   return redirect('detail', child_id=child_id)
+  return redirect('detail', child_id=child_id)
+   
 
-class RosterCreate(LoginRequiredMixin, CreateView):
-  model = Roster
-  fields = ['date', 'age_group', 'time_entered', 'caregiver', 'dropped_off_by', 'enrolled_status']
 
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
   
 class ActivityList(LoginRequiredMixin, ListView):
   model = Activity

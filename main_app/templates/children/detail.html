@@ -18,7 +18,7 @@
     <form action="{% url 'add_roster' child.id %}" method="POST">
       {% csrf_token %}
       <!-- Render the inputs -->
-      {{ roster_form.as_p }}
+      {{ roster_form.as_table }}
       <input type="submit" class="btn" value="Add Child to Roster">
     </form>
     <br>
@@ -26,7 +26,7 @@
     
     <table class="striped">
       <thead>
-        <tr><th>Checkin Data</th></tr>
+        <tr><th>Checkin Date</th><th>Time Entered</th><th>Age Group</th><th>Care Giver</th><th>Dropped Off By</th></tr>
       </thead>
       <tbody>
         {% for roster in child.roster_set.all %}
@@ -36,11 +36,14 @@
             <td>{{roster.age_group}}</td>
             <td>{{roster.caregiver}}</td> 
             <td>{{roster.dropped_off_by}}</td>
-        </tr>
-      {% endfor %}
+            
+          </tr>
+        {% endfor %}
     </tbody>
   </table>
 </div>
+
+
 
 <hr>
 <div class="row">
@@ -57,7 +60,7 @@
           <div class="card-action">
             <form action="{% url 'unassoc_activity' child.id activity.id %}" method="POST">
               {% csrf_token %}
-              <button type="submit" class="btn">Remove</button>
+              <button type="submit" class="btn">Delete</button>
             </form>
           </div>
         </div>
