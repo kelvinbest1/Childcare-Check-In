@@ -8,6 +8,7 @@ django-heroku = "*"
 python-decouple = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+django-environ = "*"
 
 [dev-packages]
 
