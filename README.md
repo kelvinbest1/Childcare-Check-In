@@ -18,7 +18,9 @@ Childcare-Check-In uses Django's architecture of MVT framework, which stands for
 * As s user, I want to add activities to the children profile
 
 # C. Images <br>
-![](/Users/kelvinlanier/Childcare-Check-In/main_app/static/css/Screenshot 2023-04-22 at 8.25.57 PM.png)
+<img width="767" alt="Screenshot 2023-04-22 at 8 25 57 PM" src="https://user-images.githubusercontent.com/60621382/233813525-62a27b6a-a47b-49ff-862e-64e77226fddf.png">
+<img width="1049" alt="Screenshot 2023-04-17 at 6 31 13 PM" src="https://user-images.githubusercontent.com/60621382/233813538-54cb483d-c027-4eca-bee5-983c5e7c5ba9.png">
+
 
 
 
