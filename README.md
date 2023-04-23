@@ -46,6 +46,8 @@ Childcare-Check-In uses Django's architecture of MVT framework, which stands for
 # F. Icebox Features <br>
 * Add children photos
 * Update and delete logs
+* UI, add dropdowns
+* Add better image
 
 
 
