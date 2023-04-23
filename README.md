@@ -31,6 +31,16 @@ Childcare-Check-In uses Django's architecture of MVT framework, which stands for
 <img width="1432" alt="Screenshot 2023-04-22 at 9 30 20 PM" src="https://user-images.githubusercontent.com/60621382/233814504-a922322b-31ad-4936-a7dc-70317e8c06c6.png">
 <img width="1440" alt="Screenshot 2023-04-22 at 9 32 31 PM" src="https://user-images.githubusercontent.com/60621382/233814546-e2316df1-1c1b-4a07-9e60-bc313ba2f1ad.png">
 
+# D. Technologies Used <br>
+* DJANGO
+* Postgres
+* CSS Materialize
+
+# E. Getting Started <br>
+<a href=https://ancient-spire-95884.herokuapp.com>CHILDCARE-CHECKIN</a>
+
+
+
 
 
 
