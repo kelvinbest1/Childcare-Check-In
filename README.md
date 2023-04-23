@@ -38,6 +38,14 @@ Childcare-Check-In uses Django's architecture of MVT framework, which stands for
 
 # E. Getting Started <br>
 <a href=https://ancient-spire-95884.herokuapp.com>CHILDCARE-CHECKIN</a>
+* Visiting the home page will take you to the login/signup screen
+* Login or signup to gain access to the app
+* Once authorized you will the ability to see all the children
+* From there you will have several navigation options.
+
+# F. Icebox Features <br>
+* Add children photos
+* Update and delete logs
 
 
 
