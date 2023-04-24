@@ -48,16 +48,15 @@ class ChildDelete(DeleteView):
 
 @login_required
 def add_roster(request, child_id):
-  # create a ModelForm instance using the data in request.POST
   form = RosterForm(request.POST)
-  # validate the form
   if form.is_valid(): 
-    # don't save the form to the db until it
-    # has the child_id assigned
     new_roster = form.save(commit=False)
     new_roster.child_id = child_id
     new_roster.save()
   return redirect('detail', child_id=child_id)
+ 
+
+   
    
 
 
@@ -95,18 +94,17 @@ def unassoc_activity(request, child_id, activity_id):
 def signup(request):
   error_message = ''
   if request.method == 'POST':
-    # This is how to create a 'user' form object
-    # that includes the data from the browser
+   
      form = UserCreationForm(request.POST)
      if form.is_valid():
-      # This will add the user to the database
       user = form.save()
-      # This is how we log a user in via code
       login(request, user)
       return redirect('index')
   else:
       error_message = 'Invalid sign up - try again'
-  # A bad POST or a GET request, so render signup.html with an empty form
+      
+     
+ 
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
